@@ -43,16 +43,18 @@ subprojects {
             mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
         }
 
-//        dependencies {
-//            dependencySet(group: 'org.springframework.boot', version: ${springBootVersion}) {
-//				entry 'spring-boot-starter'
-//                entry 'spring-boot-starter-web'
-//                entry 'spring-boot-starter-test'
-//            }
-//			dependency group: 'org.springframework.boot', name: 'spring-boot-starter', version: ${springBootVersion}
-//          dependency group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: ${springBootVersion}
-//	        dependency group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: ${springBootVersion}
-//        }
+        dependencies {
+
+			dependency group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+			
+//          Illustrates how to do a dependencySet
+//          dependencySet(group: 'some.group.name', version: 0.1.2.3) {
+//			    entry 'entry1-name'
+//              entry 'entry2-name'
+//              entry 'entry3-name'
+//          }
+			
+        }
     }
 
     sourceCompatibility = 1.8
