@@ -1,0 +1,9 @@
+
+dependencies {
+	
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}

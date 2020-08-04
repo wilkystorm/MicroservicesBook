@@ -1,0 +1,60 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.2.RELEASE'
+        springDepMgmtVersion = '1.0.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+	    jcenter()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:${springDepMgmtVersion}"
+    }
+}
+
+group = 'microservices.book'
+version = '0.0.1-SNAPSHOT'
+
+allprojects {
+    apply plugin: 'eclipse'
+    repositories {
+        mavenCentral()
+	    jcenter()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    
+    if (project != rootProject) {
+        eclipse.project.name = (rootProject.name + project.path).replaceAll(':', '-')
+    }
+	
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+        }
+
+//        dependencies {
+//            dependencySet(group: 'org.springframework.boot', version: ${springBootVersion}) {
+//				entry 'spring-boot-starter'
+//                entry 'spring-boot-starter-web'
+//                entry 'spring-boot-starter-test'
+//            }
+//			dependency group: 'org.springframework.boot', name: 'spring-boot-starter', version: ${springBootVersion}
+//          dependency group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: ${springBootVersion}
+//	        dependency group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: ${springBootVersion}
+//        }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
