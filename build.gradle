@@ -1,62 +1,62 @@
 buildscript {
-    ext {
-        springBootVersion = '2.3.2.RELEASE'
-        springDepMgmtVersion = '1.0.9.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-	    jcenter()
-    }
-    dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+	ext {
+		springBootVersion = '2.3.2.RELEASE'
+		springDepMgmtVersion = '1.0.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 		classpath "io.spring.gradle:dependency-management-plugin:${springDepMgmtVersion}"
-    }
+	}
 }
 
 group = 'microservices.book'
 version = '0.0.1-SNAPSHOT'
 
 allprojects {
-    apply plugin: 'eclipse'
-    repositories {
-        mavenCentral()
-	    jcenter()
-    }
+	apply plugin: 'eclipse'
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
 }
 
 subprojects {
-    apply plugin: 'java'
-    apply plugin: 'io.spring.dependency-management'
-    
-    if (project != rootProject) {
-        eclipse.project.name = (rootProject.name + project.path).replaceAll(':', '-')
-    }
-	
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+
+	if (project != rootProject) {
+		eclipse.project.name = (rootProject.name + project.path).replaceAll(':', '-')
+	}
+
 	configurations {
 		compileOnly {
 			extendsFrom annotationProcessor
 		}
 	}
 
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
-        }
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+		}
 
-        dependencies {
+		dependencies {
 
 			dependency group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-			
-//          Illustrates how to do a dependencySet
-//          dependencySet(group: 'some.group.name', version: 0.1.2.3) {
-//			    entry 'entry1-name'
-//              entry 'entry2-name'
-//              entry 'entry3-name'
-//          }
-			
-        }
-    }
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+			//          Illustrates how to do a dependencySet
+			//          dependencySet(group: 'some.group.name', version: 0.1.2.3) {
+			//			    entry 'entry1-name'
+			//              entry 'entry2-name'
+			//              entry 'entry3-name'
+			//          }
+
+		}
+	}
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
 }
