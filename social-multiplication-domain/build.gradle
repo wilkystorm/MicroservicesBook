@@ -3,7 +3,11 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter'
 
-	// Use JUnit test framework
-	testImplementation 'junit:junit'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation group: 'junit', name: 'junit'
 }
