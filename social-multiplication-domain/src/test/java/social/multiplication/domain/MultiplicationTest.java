@@ -8,6 +8,7 @@ public class MultiplicationTest {
 	@Test
 	public void testMultiplicationConstructorAndToString() {
 		Multiplication classUnderTest = new Multiplication(2, 2);
-		assertEquals(4, classUnderTest.getResult());
+		assertEquals(2, classUnderTest.getFactorA());
+		assertEquals(2, classUnderTest.getFactorB());
 	}
 }
